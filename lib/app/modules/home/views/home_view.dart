@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
+import 'package:workout_app/app/routes/app_pages.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -11,7 +11,9 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Get.toNamed(Routes.RECORD_WORKOUT);
+        },
         child: const Text('+'),
       ),
       appBar: AppBar(
