@@ -1,17 +1,17 @@
-class Exercise {
-  final ExerciseType type;
-  final int reps;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  // weight in kilograms
-  final double? weightUsed;
+part 'exercise.freezed.dart';
 
-  Exercise({
-    required this.type,
-    required this.reps,
-    this.weightUsed,
-  });
+@freezed
+class Exercise with _$Exercise {
+  const factory Exercise({
+    required ExerciseType type,
+    required int reps,
+    // weight in kilograms
+    double? weightUsed,
+  }) = _Exercise;
 
-  factory Exercise.example() => Exercise(
+  factory Exercise.example() => const Exercise(
         type: ExerciseType.barbellRow,
         reps: 10,
         weightUsed: null,
@@ -22,5 +22,18 @@ enum ExerciseType {
   barbellRow,
   benchPress,
   deadlift,
-  squat,
+  squat;
+
+  String get fullName {
+    switch (this) {
+      case ExerciseType.barbellRow:
+        return 'Barbell row';
+      case ExerciseType.benchPress:
+        return 'Bench press';
+      case ExerciseType.deadlift:
+        return 'Deadlift';
+      case ExerciseType.squat:
+        return 'Squat';
+    }
+  }
 }
