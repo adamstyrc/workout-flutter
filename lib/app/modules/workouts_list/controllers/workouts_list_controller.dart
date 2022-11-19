@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:uuid/uuid.dart';
 import 'package:workout_app/app/domain/model/exercise.dart';
 import 'package:workout_app/app/domain/model/workout.dart';
 import 'package:workout_app/app/domain/use_case/add_user_workout_use_case.dart';
@@ -44,13 +45,18 @@ class WorkoutsListController extends GetxController {
   }
 
   void onAddButton() {
-    final workout = Workout(name: 'New added workout', exercises: [
-      Exercise(
-        type: ExerciseType.deadlift,
-        reps: 12,
-        weightUsed: 100,
-      ),
-    ]);
+    final workout = Workout(
+      id: const Uuid().v4(),
+      createdAt: DateTime.now(),
+      name: 'New added workout',
+      exercises: [
+        Exercise(
+          type: ExerciseType.deadlift,
+          reps: 12,
+          weightUsed: 100,
+        ),
+      ],
+    );
     _addUserWorkoutUseCase.call(workout);
     // _workouts.add(Workout(name: 'ccc'));
   }

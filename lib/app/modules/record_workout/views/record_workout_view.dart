@@ -8,8 +8,12 @@ class RecordWorkoutView extends GetView<RecordWorkoutController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Text('+'),
+      ),
       appBar: AppBar(
-        title: Text('RecordWorkoutView'),
+        title: Text('New workout'),
         centerTitle: true,
       ),
       body: Center(

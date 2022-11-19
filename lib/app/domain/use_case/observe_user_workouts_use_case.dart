@@ -11,17 +11,5 @@ class ObserveUserWorkoutsUseCase {
 
   Stream<List<Workout>> call() {
     return _workoutsRepository.observeUserWorkouts();
-    return Stream.value([
-      Workout(
-        name: 'Workout #1',
-        exercises: [
-          Exercise(
-            type: ExerciseType.deadlift,
-            reps: 12,
-            weightUsed: 100,
-          ),
-        ],
-      ),
-    ]);
   }
 }

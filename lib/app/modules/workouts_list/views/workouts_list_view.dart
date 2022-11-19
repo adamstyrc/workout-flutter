@@ -18,7 +18,11 @@ class WorkoutsListView extends GetView<WorkoutsListController> {
           Expanded(
             child: Obx(
               () => ListView.builder(
-                itemBuilder: (context, index) => Text(controller.workouts[index].name),
+                itemBuilder: (context, index) {
+                  final name = controller.workouts[index].name ;
+                  final date = controller.workouts[index].createdAt;
+                  return Text('$name | $date');
+                },
                 itemCount: controller.workouts.length,
               ),
             ),
