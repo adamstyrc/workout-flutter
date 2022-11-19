@@ -6,7 +6,10 @@ class WorkoutsListBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<WorkoutsListController>(
-      () => WorkoutsListController(),
+      () => WorkoutsListController(
+        observeUserRecordedWorkoutsUseCase: Get.find(),
+        addUserWorkoutUseCase: Get.find(),
+      ),
     );
   }
 }

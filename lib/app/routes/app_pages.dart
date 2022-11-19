@@ -20,7 +20,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.WORKOUTS_LIST,
-      page: () => WorkoutsListView(),
+      page: () => const WorkoutsListView(),
       binding: WorkoutsListBinding(),
     ),
     GetPage(
