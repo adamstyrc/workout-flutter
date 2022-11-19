@@ -1,9 +1,14 @@
 import 'package:get/get.dart';
+import 'package:workout_app/app/domain/model/exercise.dart';
 
 class RecordWorkoutController extends GetxController {
-  //TODO: Implement RecordWorkoutController
 
-  final count = 0.obs;
+  final _exercises = RxList<Exercise>();
+  List<Exercise> get exercises => _exercises();
+
+  final _exerciseSelection = Exercise.example().obs;
+  Exercise get exerciseSelection => _exerciseSelection();
+
   @override
   void onInit() {
     super.onInit();
@@ -16,5 +21,13 @@ class RecordWorkoutController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
+
+  void addExercise() {
+    final exercise = Exercise(type: ExerciseType.deadlift, reps: 10, weightUsed: 100);
+    _exercises.add(exercise);
+  }
+
+  void onExerciseTypeSelected(ExerciseType selectedExercise) {
+    // _exerciseSelection = exerciseSelection
+  }
 }
