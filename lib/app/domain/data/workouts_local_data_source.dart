@@ -6,4 +6,6 @@ abstract class WorkoutsLocalDataSource {
 
   Stream<List<Workout>> observeUserWorkouts();
 
+  Future<void> deleteUserWorkout(String workoutId);
+
 }

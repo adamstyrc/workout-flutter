@@ -7,4 +7,6 @@ abstract class WorkoutsRepository {
 
   Stream<List<Workout>> observeUserWorkouts();
 
+  Future<void> deleteUserWorkout(String workoutId);
+
 }

@@ -18,4 +18,9 @@ class WorkoutsRepositoryImpl extends WorkoutsRepository {
   Stream<List<Workout>> observeUserWorkouts() {
     return _localDataSource.observeUserWorkouts();
   }
+
+  @override
+  Future<void> deleteUserWorkout(String workoutId) {
+    return _localDataSource.deleteUserWorkout(workoutId);
+  }
 }

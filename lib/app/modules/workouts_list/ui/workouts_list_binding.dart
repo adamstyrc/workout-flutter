@@ -8,7 +8,7 @@ class WorkoutsListBinding extends Bindings {
     Get.lazyPut<WorkoutsListController>(
       () => WorkoutsListController(
         observeUserRecordedWorkoutsUseCase: Get.find(),
-        addUserWorkoutUseCase: Get.find(),
+        deleteUserWorkoutUseCase: Get.find(),
       ),
     );
   }

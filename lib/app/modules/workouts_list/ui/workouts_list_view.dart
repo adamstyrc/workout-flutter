@@ -50,16 +50,31 @@ class WorkoutsListView extends GetView<WorkoutsListController> {
       // elevation: 4,
       child: Container(
         color: Colors.black12,
-        height: 100,
+        height: 120,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(name),
-              Text(_dateFormat.format(date)),
-              Text('Exercises count: ${workout.exercises.length}'),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(name),
+                  Text(_dateFormat.format(date)),
+                  Text('Exercises count: ${workout.exercises.length}'),
+                ],
+              ),
+              Column(
+                children: [
+                  TextButton(onPressed: () {}, child: const Text('Edit')),
+                  TextButton(
+                      onPressed: () {
+                        controller.deleteWorkout(workout.id);
+                      },
+                      child: const Text('Delete')),
+                ],
+              )
             ],
           ),
         ),

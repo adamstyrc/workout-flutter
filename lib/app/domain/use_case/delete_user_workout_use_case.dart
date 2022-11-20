@@ -1,14 +1,14 @@
 import 'package:workout_app/app/domain/data/workouts_repository.dart';
 import 'package:workout_app/app/domain/model/workout.dart';
 
-class ObserveUserWorkoutsUseCase {
+class DeleteUserWorkoutUseCase {
   final WorkoutsRepository _workoutsRepository;
 
-  ObserveUserWorkoutsUseCase({
+  DeleteUserWorkoutUseCase({
     required WorkoutsRepository workoutsRepository,
   }) : _workoutsRepository = workoutsRepository;
 
-  Stream<List<Workout>> call() {
-    return _workoutsRepository.observeUserWorkouts();
+  Future<void> call(String workoutId) {
+    return _workoutsRepository.deleteUserWorkout(workoutId);
   }
 }

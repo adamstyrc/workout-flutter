@@ -17,4 +17,11 @@ class WorkoutsLocalDataSourceImpl extends WorkoutsLocalDataSource {
   Stream<List<Workout>> observeUserWorkouts() {
     return _workouts.stream;
   }
+
+  @override
+  Future<void> deleteUserWorkout(String workoutId) async {
+    final workouts = List<Workout>.from(_workouts.valueOrNull ?? []);
+    workouts.removeWhere((element) => element.id == workoutId);
+    _workouts.value = workouts;
+  }
 }
