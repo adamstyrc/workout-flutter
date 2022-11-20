@@ -22,8 +22,13 @@ I found *GetX* to be one of most efficient state managements existing in Flutter
 If not GetX, I would go for BLoC with cubits.
 
 I also use RxDart as a nice addition for managing observable data
+
 3. Model creation
 For model creation I used *freezed* package so I get .copyWith and equals for free.
 
 4. Persistent storage
 I would use *Hive* or *get_storage* for saving workouts so they are accessible after app restarted. I didn't use them because of time limitation.
+
+## DEMO:
+Take a look at:
+https://github.com/adamstyrc/workout-flutter/blob/main/media/sample.mp4
