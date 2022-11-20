@@ -28,6 +28,7 @@ class WorkoutsListController extends GetxController {
     _subscriptions.add(
       _observeUserRecordedWorkoutsUseCase.call().listen((workouts) {
         _workouts.clear();
+        workouts.sort((workout1, workout2) => workout1.createdAt.compareTo(workout2.createdAt));
         _workouts.addAll(workouts);
       }),
     );
