@@ -28,10 +28,12 @@ class WorkoutsListView extends GetView<WorkoutsListController> {
           children: [
             Expanded(
               child: Obx(
-                () => ListView.builder(
-                  itemBuilder: _buildWorkoutItem,
-                  itemCount: controller.workouts.length,
-                ),
+                () => controller.workouts.isNotEmpty
+                    ? ListView.builder(
+                        itemBuilder: _buildWorkoutItem,
+                        itemCount: controller.workouts.length,
+                      )
+                    : _buildEmptyView(),
               ),
             ),
           ],
@@ -78,6 +80,12 @@ class WorkoutsListView extends GetView<WorkoutsListController> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildEmptyView() {
+    return const Center(
+      child: Text('No workouts added yet'),
     );
   }
 }
