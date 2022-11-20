@@ -26,11 +26,7 @@ class RecordWorkoutView extends GetView<RecordWorkoutController> {
                       controller: controller.pageController),
                 ),
                 ElevatedButton(
-                  onPressed: controller.exercises.isNotEmpty
-                      ? () {
-                          controller.saveWorkout();
-                        }
-                      : null,
+                  onPressed: controller.exercises.isNotEmpty ? () => controller.saveWorkout() : null,
                   child: const Text('Save workout'),
                 ),
               ],

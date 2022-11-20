@@ -58,7 +58,10 @@ class RecordWorkoutController extends GetxController {
     final exercise = _exerciseSelection();
     _exercises.add(exercise);
 
-    pageController.nextPage(duration: const Duration(seconds: 1), curve: Curves.easeInOut);
+    pageController.nextPage(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.ease,
+    );
   }
 
   void onExerciseTypeSelected(ExerciseType selectedExercise) {
