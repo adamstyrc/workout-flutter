@@ -8,4 +8,6 @@ abstract class WorkoutsLocalDataSource {
 
   Future<void> deleteUserWorkout(String workoutId);
 
+  Future<Workout> editUserWorkout(Workout workout);
+
 }

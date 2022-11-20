@@ -1,15 +1,16 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:workout_app/app/domain/model/exercise.dart';
 
-class Workout {
-  final String id;
-  final DateTime createdAt;
-  final String name;
-  final List<Exercise> exercises;
+part 'workout.freezed.dart';
 
-  Workout({
-    required this.id,
-    required this.name,
-    required this.createdAt,
-    required this.exercises,
-  });
+@freezed
+class Workout with _$Workout {
+  const factory Workout({
+    required String id,
+    required DateTime createdAt,
+    required String name,
+    required List<Exercise> exercises,
+    // weight in kilograms
+    double? weightUsed,
+  }) = _Workout;
 }

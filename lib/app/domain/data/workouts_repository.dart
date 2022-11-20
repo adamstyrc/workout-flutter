@@ -9,4 +9,6 @@ abstract class WorkoutsRepository {
 
   Future<void> deleteUserWorkout(String workoutId);
 
+  Future<Workout> editUserWorkout(Workout workout);
+
 }

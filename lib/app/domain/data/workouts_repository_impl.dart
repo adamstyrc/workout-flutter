@@ -23,4 +23,9 @@ class WorkoutsRepositoryImpl extends WorkoutsRepository {
   Future<void> deleteUserWorkout(String workoutId) {
     return _localDataSource.deleteUserWorkout(workoutId);
   }
+
+  @override
+  Future<Workout> editUserWorkout(Workout workout) {
+    return _localDataSource.editUserWorkout(workout);
+  }
 }

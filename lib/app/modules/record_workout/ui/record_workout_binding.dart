@@ -8,6 +8,7 @@ class RecordWorkoutBinding extends Bindings {
     Get.lazyPut<RecordWorkoutController>(
       () => RecordWorkoutController(
         addUserWorkoutUseCase: Get.find(),
+        editUserWorkoutUseCase: Get.find(),
       ),
     );
   }

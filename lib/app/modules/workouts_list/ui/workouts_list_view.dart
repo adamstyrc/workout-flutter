@@ -67,12 +67,11 @@ class WorkoutsListView extends GetView<WorkoutsListController> {
               ),
               Column(
                 children: [
-                  TextButton(onPressed: () {}, child: const Text('Edit')),
+                  TextButton(onPressed: () => controller.editWorkout(workout), child: const Text('Edit')),
                   TextButton(
-                      onPressed: () {
-                        controller.deleteWorkout(workout.id);
-                      },
-                      child: const Text('Delete')),
+                    onPressed: () => controller.deleteWorkout(workout.id),
+                    child: const Text('Delete'),
+                  ),
                 ],
               )
             ],

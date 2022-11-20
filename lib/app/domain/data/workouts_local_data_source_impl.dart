@@ -9,7 +9,7 @@ class WorkoutsLocalDataSourceImpl extends WorkoutsLocalDataSource {
   Future<Workout> addUserWorkout(Workout workout) async {
     final newWorkouts = List<Workout>.from(_workouts.valueOrNull ?? []);
     newWorkouts.add(workout);
-    _workouts.add(newWorkouts);
+    _workouts.value = newWorkouts;
     return workout;
   }
 
@@ -23,5 +23,14 @@ class WorkoutsLocalDataSourceImpl extends WorkoutsLocalDataSource {
     final workouts = List<Workout>.from(_workouts.valueOrNull ?? []);
     workouts.removeWhere((element) => element.id == workoutId);
     _workouts.value = workouts;
+  }
+
+  @override
+  Future<Workout> editUserWorkout(Workout workout) async {
+    final newWorkouts = List<Workout>.from(_workouts.valueOrNull ?? []);
+    newWorkouts.removeWhere((element) => element.id == workout.id);
+    newWorkouts.add(workout);
+    _workouts.value = newWorkouts;
+    return workout;
   }
 }

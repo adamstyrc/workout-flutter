@@ -3,6 +3,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:workout_app/app/domain/model/workout.dart';
 import 'package:workout_app/app/domain/use_case/delete_user_workout_use_case.dart';
 import 'package:workout_app/app/domain/use_case/observe_user_workouts_use_case.dart';
+import 'package:workout_app/app/routes/app_pages.dart';
 
 class WorkoutsListController extends GetxController {
   final ObserveUserWorkoutsUseCase _observeUserRecordedWorkoutsUseCase;
@@ -39,5 +40,9 @@ class WorkoutsListController extends GetxController {
 
   Future<void> deleteWorkout(String workoutId) async {
     await _deleteUserWorkoutUseCase.call(workoutId);
+  }
+
+  void editWorkout(Workout workout) {
+    Get.toNamed(Routes.RECORD_WORKOUT, arguments: workout);
   }
 }

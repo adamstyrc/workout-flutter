@@ -12,7 +12,7 @@ class RecordWorkoutView extends GetView<RecordWorkoutController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('New workout'),
+          title: Text(controller.isNewWorkout ? 'New workout' : 'Edit workout'),
           centerTitle: true,
         ),
         body: SafeArea(
@@ -123,7 +123,12 @@ class RecordWorkoutView extends GetView<RecordWorkoutController> {
         Text(exercise.type.fullName),
         const SizedBox(height: 16),
         Text('Reps: ${exercise.reps}'),
-        if (exercise.weightUsed != null) Text('Weight used: ${exercise.weightUsed}')
+        if (exercise.weightUsed != null) Text('Weight used: ${exercise.weightUsed}'),
+        const SizedBox(height: 16),
+        TextButton(
+          onPressed: () => controller.removeExercise(index),
+          child: const Text('Remove'),
+        )
       ],
     );
   }

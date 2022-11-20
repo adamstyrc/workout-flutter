@@ -4,20 +4,25 @@ import 'package:uuid/uuid.dart';
 import 'package:workout_app/app/domain/model/exercise.dart';
 import 'package:workout_app/app/domain/model/workout.dart';
 import 'package:workout_app/app/domain/use_case/add_user_workout_use_case.dart';
+import 'package:workout_app/app/domain/use_case/edit_user_workout_use_case.dart';
 
 class RecordWorkoutController extends GetxController {
   final AddUserWorkoutUseCase _addUserWorkoutUseCase;
+  final EditUserWorkoutUseCase _editUserWorkoutUseCase;
 
   RecordWorkoutController({
     required AddUserWorkoutUseCase addUserWorkoutUseCase,
-  }) : _addUserWorkoutUseCase = addUserWorkoutUseCase;
+    required EditUserWorkoutUseCase editUserWorkoutUseCase,
+  })  : _addUserWorkoutUseCase = addUserWorkoutUseCase,
+        _editUserWorkoutUseCase = editUserWorkoutUseCase;
+
+  Workout? _editedWorkout;
+  bool get isNewWorkout => _editedWorkout == null;
 
   final _exercises = RxList<Exercise>();
-
   List<Exercise> get exercises => _exercises();
 
   final _exerciseSelection = Exercise.example().obs;
-
   Exercise get exerciseSelection => _exerciseSelection();
 
   final repsTextController = TextEditingController();
@@ -30,6 +35,13 @@ class RecordWorkoutController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+
+    if (Get.arguments != null && Get.arguments is Workout) {
+      final workout = Get.arguments as Workout;
+      _editedWorkout = workout;
+      _exercises.value = List.from(workout.exercises);
+    }
+
     repsTextController.text = _exerciseSelection.value.reps.toString();
     repsTextController.addListener(() {
       final reps = int.tryParse(repsTextController.text);
@@ -40,11 +52,6 @@ class RecordWorkoutController extends GetxController {
       final weightUsed = double.tryParse(weightUsedTextController.text);
       _exerciseSelection.value = _exerciseSelection.value.copyWith(weightUsed: weightUsed);
     });
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
   }
 
   @override
@@ -69,6 +76,15 @@ class RecordWorkoutController extends GetxController {
   }
 
   Future<void> saveWorkout() async {
+    final workout = _editedWorkout;
+    if (workout != null) {
+      await _saveExistingWorkout(workout);
+    } else {
+      await _saveNewWorkout();
+    }
+  }
+
+  Future<void> _saveNewWorkout() async {
     final id = const Uuid().v4();
     final workout = Workout(
       id: id,
@@ -78,5 +94,20 @@ class RecordWorkoutController extends GetxController {
     );
     await _addUserWorkoutUseCase.call(workout);
     Get.back();
+  }
+
+  Future<void> _saveExistingWorkout(Workout workout) async {
+    final modifiedWorkout = workout.copyWith(exercises: exercises);
+    await _editUserWorkoutUseCase.call(modifiedWorkout);
+    Get.back();
+  }
+
+  void removeExercise(int index) {
+    _exercises.removeAt(index);
+
+    pageController.previousPage(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.ease,
+    );
   }
 }
