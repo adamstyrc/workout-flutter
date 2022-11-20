@@ -21,15 +21,16 @@ class RecordWorkoutView extends GetView<RecordWorkoutController> {
               children: [
                 Expanded(
                   child: PageView.builder(
-                    itemBuilder: (BuildContext context, int index) => Obx(() => _buildPageItem(context, index)),
-                    itemCount: controller.exercises.length + 1,
-                    controller: controller.pageController
-                  ),
+                      itemBuilder: (BuildContext context, int index) => Obx(() => _buildPageItem(context, index)),
+                      itemCount: controller.exercises.length + 1,
+                      controller: controller.pageController),
                 ),
                 ElevatedButton(
-                  onPressed: () {
-                    controller.saveWorkout();
-                  },
+                  onPressed: controller.exercises.isNotEmpty
+                      ? () {
+                          controller.saveWorkout();
+                        }
+                      : null,
                   child: const Text('Save workout'),
                 ),
               ],

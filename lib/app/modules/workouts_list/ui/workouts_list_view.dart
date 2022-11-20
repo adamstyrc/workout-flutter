@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:workout_app/app/routes/app_pages.dart';
 
 import 'workouts_list_controller.dart';
+
+final _dateFormat = DateFormat('HH:mm:ss');
 
 class WorkoutsListView extends GetView<WorkoutsListController> {
   const WorkoutsListView({super.key});
@@ -38,11 +41,13 @@ class WorkoutsListView extends GetView<WorkoutsListController> {
   }
 
   Widget _buildWorkoutItem(context, index) {
-    final name = controller.workouts[index].name;
-    final date = controller.workouts[index].createdAt;
+    final workout = controller.workouts[index];
+    final name = workout.name;
+    final date = workout.createdAt;
 
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return Card(
+      margin: const EdgeInsets.all(8.0),
+      // elevation: 4,
       child: Container(
         color: Colors.black12,
         height: 100,
@@ -53,7 +58,8 @@ class WorkoutsListView extends GetView<WorkoutsListController> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(name),
-              Text('$date'),
+              Text(_dateFormat.format(date)),
+              Text('Exercises count: ${workout.exercises.length}'),
             ],
           ),
         ),
