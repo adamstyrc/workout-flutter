@@ -10,12 +10,6 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Get.toNamed(Routes.RECORD_WORKOUT);
-        },
-        child: const Text('+'),
-      ),
       appBar: AppBar(
         title: const Text('Home'),
         centerTitle: true,
@@ -25,7 +19,7 @@ class HomeView extends GetView<HomeController> {
           onPressed: () {
             Get.toNamed(Routes.WORKOUTS_LIST);
           },
-          child: Text('List'),
+          child: const Text('My Workouts'),
         ),
       ),
     );

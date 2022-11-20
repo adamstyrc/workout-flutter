@@ -2,10 +2,10 @@ import 'package:get/get.dart';
 
 import 'package:workout_app/app/modules/home/bindings/home_binding.dart';
 import 'package:workout_app/app/modules/home/views/home_view.dart';
-import 'package:workout_app/app/modules/record_workout/bindings/record_workout_binding.dart';
-import 'package:workout_app/app/modules/record_workout/views/record_workout_view.dart';
-import 'package:workout_app/app/modules/workouts_list/bindings/workouts_list_binding.dart';
-import 'package:workout_app/app/modules/workouts_list/views/workouts_list_view.dart';
+import 'package:workout_app/app/modules/record_workout/ui/record_workout_binding.dart';
+import 'package:workout_app/app/modules/record_workout/ui/record_workout_view.dart';
+import 'package:workout_app/app/modules/workouts_list/ui/workouts_list_binding.dart';
+import 'package:workout_app/app/modules/workouts_list/ui/workouts_list_view.dart';
 
 part 'app_routes.dart';
 
@@ -25,7 +25,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.RECORD_WORKOUT,
-      page: () => RecordWorkoutView(),
+      page: () => const RecordWorkoutView(),
       binding: RecordWorkoutBinding(),
     ),
   ];

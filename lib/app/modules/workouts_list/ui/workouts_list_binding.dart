@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../controllers/workouts_list_controller.dart';
+import 'workouts_list_controller.dart';
 
 class WorkoutsListBinding extends Bindings {
   @override

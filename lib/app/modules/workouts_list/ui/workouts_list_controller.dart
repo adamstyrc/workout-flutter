@@ -1,20 +1,16 @@
 import 'package:get/get.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:uuid/uuid.dart';
-import 'package:workout_app/app/domain/model/exercise.dart';
 import 'package:workout_app/app/domain/model/workout.dart';
 import 'package:workout_app/app/domain/use_case/add_user_workout_use_case.dart';
 import 'package:workout_app/app/domain/use_case/observe_user_workouts_use_case.dart';
 
 class WorkoutsListController extends GetxController {
   final ObserveUserWorkoutsUseCase _observeUserRecordedWorkoutsUseCase;
-  final AddUserWorkoutUseCase _addUserWorkoutUseCase;
 
   WorkoutsListController({
     required ObserveUserWorkoutsUseCase observeUserRecordedWorkoutsUseCase,
     required AddUserWorkoutUseCase addUserWorkoutUseCase,
-  })  : _observeUserRecordedWorkoutsUseCase = observeUserRecordedWorkoutsUseCase,
-        _addUserWorkoutUseCase = addUserWorkoutUseCase;
+  }) : _observeUserRecordedWorkoutsUseCase = observeUserRecordedWorkoutsUseCase;
 
   final _subscriptions = CompositeSubscription();
 
@@ -35,29 +31,7 @@ class WorkoutsListController extends GetxController {
   }
 
   @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
   void onClose() {
     _subscriptions.dispose();
-  }
-
-  void onAddButton() {
-    final workout = Workout(
-      id: const Uuid().v4(),
-      createdAt: DateTime.now(),
-      name: 'New added workout',
-      exercises: [
-        Exercise(
-          type: ExerciseType.deadlift,
-          reps: 12,
-          weightUsed: 100,
-        ),
-      ],
-    );
-    _addUserWorkoutUseCase.call(workout);
-    // _workouts.add(Workout(name: 'ccc'));
   }
 }
